@@ -21,6 +21,9 @@ class OrderHandler {
     var res =
         await http.post(_apiEndpoint, headers: _headers, body: order.toJson());
 
+    print(
+        "Response: statuscode ${res.statusCode}, reason ${res.reasonPhrase}, details ${res.body}");
+
     return MollieOrderResponse.build(json.decode(res.body));
   }
 
