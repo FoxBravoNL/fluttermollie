@@ -41,7 +41,7 @@ class MollieOrderRequest {
       "amount": amount.toMap(),
       "billingAddress": billingAddress.toMap(),
       "shippingAddress": shippingAddress.toMap(),
-      "metadata": metaData,
+      //"metaData": metaData,
       "consumerDateOfBirth": consumerDateOfBirth,
       "locale": locale,
       "redirectUrl": redirectUrl,
@@ -86,7 +86,7 @@ class MollieOrderResponse {
 
     mode = data["mode"];
 
-    metaData = data["metadata"];
+    metaData = data["metaData"];
 
     consumerDateOfBirth = data["consumerDateOfBirth"];
     locale = data["locale"];

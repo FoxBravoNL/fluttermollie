@@ -77,11 +77,9 @@ class MollieProductResponse {
         value: data["totalAmount"]["value"],
         currency: data["totalAmount"]["currency"]);
 
-    final discountData = data["discountAmount"];
-
     discountAmount = new MollieAmount(
-        value: discountData != null ? discountData["value"] : '0.00',
-        currency: discountData != null ? discountData["currency"] : 'EUR');
+        value: data["discountAmount"]["value"],
+        currency: data["discountAmount"]["currency"]);
 
     vatAmount = new MollieAmount(
         value: data["vatAmount"]["value"],

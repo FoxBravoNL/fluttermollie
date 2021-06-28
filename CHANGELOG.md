@@ -1,7 +1,3 @@
-## 0.8.2
-
-* Added support for Invoice API (BETA) calls via client
-
 ## 0.8.1
 
 * Added support for Payment API calls via client
