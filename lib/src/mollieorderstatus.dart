@@ -34,7 +34,7 @@ class _MollieOrderStatusState extends State<MollieOrderStatus> {
         statusIndex = 3;
     }
 
-    List<Widget> container = new List();
+    List<Widget> container = [];
 
     for (int i = 0; i < orderStatus.length; i++) {
       container.add(Expanded(

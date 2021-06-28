@@ -37,7 +37,7 @@ class MollieCheckout extends StatefulWidget {
 }
 
 class _MollieCheckoutState extends State<MollieCheckout> {
-  List<Widget> paymentMethods = new List();
+  List<Widget> paymentMethods = [];
   CheckoutStyle style;
 
   void _setMethod(String method) {

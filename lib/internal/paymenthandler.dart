@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mollie/src/molliepayment.dart';
 
-/// TODO: https://stackoverflow.com/questions/52073350/php-mollie-payments-recurring-billing
-
 class PaymentHandler {
   final String _apiEndpoint = "https://api.mollie.com/v2/payments";
 
@@ -18,7 +16,7 @@ class PaymentHandler {
   /// To wrap your head around the payment process, an explanation and flow charts can be found in the Payments API Overview.
   Future<MolliePaymentResponse> create(
       MolliePaymentRequest payment, String customerId) async {
-    var res = await http.post(_apiEndpoint,
+    var res = await http.post(Uri.parse(_apiEndpoint),
         headers: _headers, body: payment.toJson());
 
     dynamic data = json.decode(res.body);
@@ -29,7 +27,7 @@ class PaymentHandler {
   /// Retrieve a single payment object by its payment token.
   Future<MolliePaymentResponse> get(String paymentId) async {
     var res = await http.get(
-      _apiEndpoint + "/" + paymentId,
+      Uri.parse(_apiEndpoint + "/" + paymentId),
       headers: _headers,
     );
 
@@ -43,7 +41,7 @@ class PaymentHandler {
   /// The isCancelable property on the Payment object will indicate if the payment can be canceled.
   Future<MolliePaymentResponse> cancel(String paymentId) async {
     var res = await http.delete(
-      _apiEndpoint + "/" + paymentId,
+      Uri.parse(_apiEndpoint + "/" + paymentId),
       headers: _headers,
     );
 
@@ -55,7 +53,7 @@ class PaymentHandler {
   /// This endpoint can be used to update some details of a created payment.
   /// You can update weebhookUrl, redirectUrl, description and metadata
   Future<MolliePaymentResponse> update(String paymentId, Map map) async {
-    var res = await http.patch(_apiEndpoint + "/" + paymentId,
+    var res = await http.patch(Uri.parse(_apiEndpoint + "/" + paymentId),
         headers: _headers, body: json.encode(map));
 
     dynamic data = json.decode(res.body);
@@ -67,11 +65,11 @@ class PaymentHandler {
   /// TODO fix payments attributes changing depending on order or payment api
   Future<List<MolliePaymentResponse>> listPayments() async {
     var res = await http.get(
-      _apiEndpoint,
+      Uri.parse(_apiEndpoint),
       headers: _headers,
     );
 
-    List<MolliePaymentResponse> subs = new List();
+    List<MolliePaymentResponse> subs = [];
 
     dynamic data = json.decode(res.body);
 

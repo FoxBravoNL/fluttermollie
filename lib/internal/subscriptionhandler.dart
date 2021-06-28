@@ -19,7 +19,7 @@ class SubscriptionHandler {
   Future<MollieSubscriptionResponse> create(
       MollieSubscriptionRequest sub, String customerId) async {
     var res = await http.post(
-        _apiEndpoint + "/" + customerId + "/subscriptions",
+        Uri.parse(_apiEndpoint + "/" + customerId + "/subscriptions"),
         headers: _headers,
         body: sub.toJson());
 
@@ -32,7 +32,7 @@ class SubscriptionHandler {
   Future<MollieSubscriptionResponse> get(
       String customerId, String subId) async {
     var res = await http.get(
-      _apiEndpoint + "/" + customerId + "/subscriptions/" + subId,
+      Uri.parse(_apiEndpoint + "/" + customerId + "/subscriptions/" + subId),
       headers: _headers,
     );
 
@@ -45,7 +45,7 @@ class SubscriptionHandler {
   Future<MollieSubscriptionResponse> cancel(
       String customerId, String subId) async {
     var res = await http.delete(
-      _apiEndpoint + "/" + customerId + "/subscriptions/" + subId,
+      Uri.parse(_apiEndpoint + "/" + customerId + "/subscriptions/" + subId),
       headers: _headers,
     );
 
@@ -59,7 +59,7 @@ class SubscriptionHandler {
   Future<MollieSubscriptionResponse> update(
       MollieSubscriptionRequest sub, String subId, String customerId) async {
     var res = await http.patch(
-        _apiEndpoint + "/" + customerId + "/subscriptions/" + subId,
+        Uri.parse(_apiEndpoint + "/" + customerId + "/subscriptions/" + subId),
         headers: _headers,
         body: sub.toJson());
 
@@ -72,11 +72,11 @@ class SubscriptionHandler {
   Future<List<MollieSubscriptionResponse>> listSubscriptions(
       String customerId) async {
     var res = await http.get(
-      _apiEndpoint + "/" + customerId + "/subscriptions",
+      Uri.parse(_apiEndpoint + "/" + customerId + "/subscriptions"),
       headers: _headers,
     );
 
-    List<MollieSubscriptionResponse> subs = new List();
+    List<MollieSubscriptionResponse> subs = [];
 
     dynamic data = json.decode(res.body);
 

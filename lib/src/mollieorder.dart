@@ -64,7 +64,7 @@ class MollieOrderResponse {
   String redirectUrl;
   String webhookUrl;
   String checkoutUrl;
-  List<MollieProductResponse> products = new List();
+  List<MollieProductResponse> products = [];
   String status;
   String method;
   String orderNumber;
